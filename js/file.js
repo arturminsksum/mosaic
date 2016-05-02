@@ -12,24 +12,6 @@ function FaceView() {
         mouth : '1.png'
     };    
 
-    self.initialPicture = function () {
-        $('.face').attr('src','images/'+self.picture.face);
-        $('.mouth').attr('src','images/'+self.picture.mouth);
-    };
-    self.changeItem = function  (type,target) {
-        self.picture[type] = target;
-        self.initialPicture();
-        self.pushStorage();
-    };    
-    self.onChange = function  () {
-        var select = $('.select');
-        select.on('change', function(){
-            var type = $(this).data('type');
-            var target = $(this).find($('option:selected')).data('item');
-            self.changeItem(type,target);
-        });
-    };
-
     self.renderSelect = function () {
         $.each(self.media, function( index, value ) {
             var type = index;
@@ -42,6 +24,18 @@ function FaceView() {
      
     };
 
+    self.initialSelect = function(){
+        $.each(self.picture, function( index, value ) {
+            $(`[data-type="${index}"]`).find($(`[data-item="${value}"]`)).attr('selected', 'true');
+            // console.log(index);
+        });        
+    };
+
+    self.initialPicture = function () {
+        $('.face').attr('src','images/'+self.picture.face);
+        $('.mouth').attr('src','images/'+self.picture.mouth);
+    };
+
     self.pushStorage = function(){
         sessionStorage.setItem('picture', JSON.stringify(self.picture));
     };
@@ -49,16 +43,32 @@ function FaceView() {
     self.loadPicture = function () {
         if (sessionStorage.getItem('picture')) {
             self.picture = JSON.parse(sessionStorage.getItem('picture'));   
-            self.initialPicture();         
+            self.initialPicture(); 
+
         } else {
             self.initialPicture();
         };
     };
 
+    self.changeItem = function  (type,target) {
+        self.picture[type] = target;
+        self.initialPicture();
+        self.pushStorage();
+    };  
+
+    self.onChange = function  () {
+        var select = $('.select');
+        select.on('change', function(){
+            var type = $(this).data('type');
+            var target = $(this).find($('option:selected')).data('item');
+            self.changeItem(type,target);
+        });
+    };
 
     self.init = function () {
         self.renderSelect();        
         self.loadPicture();
+        self.initialSelect();
         self.onChange();
     }();
 }
