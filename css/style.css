@@ -1,0 +1,15 @@
+.face-inner {
+	position: relative;
+	display: inline-block;
+}
+.face {
+
+}
+
+.mouth {
+	position: absolute;
+	top: 145px;
+	left: 47%;
+	transform: translate(-47%,0);
+
+}
