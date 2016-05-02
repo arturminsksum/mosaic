@@ -46,16 +46,6 @@ function FaceView() {
         sessionStorage.setItem('picture', JSON.stringify(self.picture));
     };
 
-
-    // self.renderSelect = function () {
-    //     $.each(self.media.face, function( index, value ) {
-    //         $('.select[data-type="face"]').append(`<option data-item="${value}">Face${index+1}</option>`);
-    //     });
-    //     $.each(self.media.mouth, function( index, value ) {
-    //         $('.select[data-type="mouth"]').append(`<option data-item="${value}">Mouth${index+1}</option>`);
-    //     });        
-    // };
-
     self.loadPicture = function () {
         if (sessionStorage.getItem('picture')) {
             self.picture = JSON.parse(sessionStorage.getItem('picture'));   
@@ -74,22 +64,6 @@ function FaceView() {
 }
 
 var faceView = new FaceView();
-
-
-// $('.select').on('change', function(){
-//     var type = $(this).data('type');
-//     var target = $(this).find($('option:selected')).data('item');
-//     global.changeItem(type,target);
-// });
-
-
-
-
-
-
-$(document).ready(function() { 
-    
-});    
 
 // 1
 
