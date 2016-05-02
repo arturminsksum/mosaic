@@ -1,15 +1,34 @@
 .face-inner {
 	position: relative;
 	display: inline-block;
+	margin-bottom: 20px;
 }
 .face {
 
 }
-
 .mouth {
 	position: absolute;
 	top: 145px;
 	left: 47%;
 	transform: translate(-47%,0);
+
+}
+.select {
+	margin-left: 20px;
+}
+.choice-face img {
+	padding: 10px;
+	background: yellowgreen;
+	border: 1px solid;
+	margin: 10px;
+	cursor: pointer;
+}
+
+.choice-mouth img {
+	padding: 10px;
+	background: yellow;
+	border: 1px solid;
+	margin: 10px;
+	cursor: pointer;
 
 }

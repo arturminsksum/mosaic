@@ -3,12 +3,12 @@ function FaceView() {
     var self = this;
 
     self.media = {
-        face : ['head.png','head.png','head.png','head.png'],        
+        face : ['head1.png','head2.png','head3.png','head4.png'],        
         mouth : ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png','9.png','10.png'],
 
     };
     self.picture = {
-        face: 'head.png',
+        face: 'head1.png',
         mouth : '1.png'
     };    
 
@@ -19,6 +19,17 @@ function FaceView() {
             $.each(value, function( index, value ) {
                 // console.log(index);
                 $(`[data-type="${type}"]`).append(`<option data-item="${value}">${type} ${index+1}</option>`);
+            });
+        });
+     
+    };
+
+    self.renderChoice = function () {
+        $.each(self.media, function( index, value ) {
+            var type = index;
+            $('body').append(`<div class="choice choice-${type}" data-choice="${type}"><p>Выбери ${type}</p></div>`);
+            $.each(value, function( index, value ) {
+                $(`[data-choice="${type}"]`).append(`<img src="images/${value}" data-img="${value}" />`);
             });
         });
      
@@ -65,11 +76,22 @@ function FaceView() {
         });
     };
 
+    self.onClick = function  () {
+        var choice = $('.choice');
+        choice.on('click', 'img', function(){
+            var type = $(this).parent(choice).data('choice');
+            var target = $(this).data('img');
+            self.changeItem(type,target);
+        });
+    };
+
     self.init = function () {
         self.renderSelect();        
         self.loadPicture();
         self.initialSelect();
         self.onChange();
+        self.renderChoice();
+        self.onClick();
     }();
 }
 
