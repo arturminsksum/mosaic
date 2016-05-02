@@ -21,7 +21,7 @@
 	background: yellowgreen;
 	border: 1px solid;
 	margin: 10px;
-	cursor: pointer;
+	cursor: move;
 }
 
 .choice-mouth img {
@@ -29,6 +29,6 @@
 	background: yellow;
 	border: 1px solid;
 	margin: 10px;
-	cursor: pointer;
+	cursor: move;
 
 }

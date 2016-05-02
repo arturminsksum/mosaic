@@ -85,6 +85,20 @@ function FaceView() {
         });
     };
 
+    self.dragAndDrop = function  () {
+        $('.choice-face img').draggable({
+            helper: "clone"
+        });
+
+        $('.face').droppable({
+            drop: function() {
+                
+            }
+        });   
+    };
+
+
+
     self.init = function () {
         self.renderSelect();        
         self.loadPicture();
@@ -92,6 +106,7 @@ function FaceView() {
         self.onChange();
         self.renderChoice();
         self.onClick();
+        self.dragAndDrop();
     }();
 }
 
