@@ -27,7 +27,7 @@ function FaceView() {
     self.renderChoice = function () {
         $.each(self.media, function( index, value ) {
             var type = index;
-            $('body').append(`<div class="choice choice-${type}" data-choice="${type}"><p>Выбери ${type}</p></div>`);
+            $('body').append(`<div class="choice choice-${type}" data-choice="${type}"><p>Выбери или перетяни ${type}</p></div>`);
             $.each(value, function( index, value ) {
                 $(`[data-choice="${type}"]`).append(`<img src="images/${value}" data-img="${value}" />`);
             });
@@ -86,13 +86,19 @@ function FaceView() {
     };
 
     self.dragAndDrop = function  () {
-        $('.choice-face img').draggable({
-            helper: "clone"
+        var type = '';
+        var target = '';
+        $('.choice img').draggable({
+            helper: "clone",
+           start: function() {
+                type = $(this).parent('.choice').data('choice');
+                target = $(this).data('img');
+            },            
         });
 
         $('.face').droppable({
             drop: function() {
-                
+                self.changeItem(type,target);
             }
         });   
     };
